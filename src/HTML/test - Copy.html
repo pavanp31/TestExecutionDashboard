@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+div.container {
+    width: 100%;
+    border: 1px solid gray;
+}
+
+header, footer {
+    padding: 1em;
+    color: white;
+    background-color: black;
+    clear: left;
+    text-align: center;
+}
+
+nav {
+    float: left;
+    max-width: 160px;
+    margin: 0;
+    padding: 1em;
+}
+
+
+nav ul {
+    list-style-type: none;
+    padding: 0;
+}
+   
+nav ul a {
+    text-decoration: none;
+}
+
+article {
+    margin-left: 170px;
+    border-left: 1px solid gray;
+    padding: 1em;
+    overflow: hidden;
+}
+
+button {
+    padding: 1em;
+    color:white;
+        background-color: black;
+    clear: left;
+    text-align: center;
+    height: 40;
+    width: 60;
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+
+<header>
+   <h1>Test Execution using : Electron + Docker + Zalenium</h1>
+</header>
+  
+<nav>
+  <ul>
+    <li><a href="#">London</a></li>
+    <li><a href="#">Paris</a></li>
+    <li><a href="#">Tokyo</a></li>
+  </ul>
+
+  <button id="LaunchButton" name="LaunchDashboardLive" class="button" ng-click="clickOnBtn" ></button>
+</nav>
+
+<article>
+  <h1>Automation Execution using Electron+Docker+Zalenium</h1>
+  <h2>Setup</h2>
+  <p>Steps: </p>
+  <table>
+      <tbody>
+          <td>
+          <tr>1. Install Docker for windows from docker hub</tr>
+        </td>
+        <td>
+          <tr>2. pull Zalenium image </tr>
+        </td>
+          <tr>3. Run Zalenium: >  docker run --rm -ti --name zalenium -p 4444:4444 -v /var/run/docker.sock:/var/run/docker.sock -v /tmp/videos:/home/seluser/videos --privileged dosel/zalenium start </tr>
+          <tr>4.  Verify if the Zalenium is running in your machine with command: > Docker ps -a</tr>
+          <tr>5. Navigate to localhost:4444\grid/live</tr>
+          <tr>6. Update your driver with remoteDriver and trigger run</tr>
+      </tbody>
+  </table>
+  <p>Standing on the River Thames, London has been a major settlement for two millennia, its history going back to its founding by the Romans, who named it Londinium.</p>
+</article>
+
+
+<footer>Copyright &copy; W3Schools.com</footer>
+
+</div>
+<script type="text/javascript" src="../module1.js"></script>
+<script type="text/javascript" src="../main.js"></script>
+
+<script>window.$ = window.jQuery = require('jquery');</script>
+<script>
+
+ //var invokeAction = function(){
+    var ipc = require('electron').ipcRenderer;
+    // var button = document.createElement("button")
+    // button.textContent = "Launch Live Dashboard";
+    // button.addEventListener('click', function(){
+    //     var path = 'https://youtube.com';
+    //   ipc.send('cut',path);
+
+    //  var button1 = document.createElement("button")
+    // button1.textContent = "ButtonControl";
+    $('LaunchButton').click(
+    function()
+    {
+    //button1.addEventListener('click', function(){
+      //  var path = 'https://youtube.com';
+      ipc.send('cut1',path);
+    //}
+    //document.body.appendChild(button1)
+    })
+  var nforce = require('nforce');
+      
+var org = nforce.createConnection({
+  clientId: 'hellopavanpatel@gmail.com',
+  clientSecret: 'b4piDSKrvZhs4ZZpFuQH56WY',
+  redirectUri: 'http://login.salesforce.com/oauth/_callback',
+  apiVersion: 'v27.0',  // optional, defaults to current salesforce API version
+  environment: 'sandbox',  // optional, salesforce 'sandbox' or 'production', production default
+  mode: 'multi' // optional, 'single' or 'multi' user mode, multi default
+});
+
+
+        var username      = 'hellopavanpatel@nfp.com',
+    password      = 'Bangalore12!@',
+    securityToken = 'b4piDSKrvZhs4ZZpFuQH56WY',
+    oauth;
+
+org.authenticate({ username: username, password: password, securityToken: securityToken },
+ function(err, resp)
+ {
+    if(!err) 
+    {
+        console.log('Access Token: ' + resp.access_token);
+        oauth = resp;
+        }
+     else
+     {
+            console.log('Error: ' + err.message);
+      }
+});
+
+    //   function(path)
+    //   {
+    //    //ipc.mainWindow.loadURL('https://test.salesforce.com')
+    // })
+    
+    
+
+    
+   // }
+    </script>
+
+</body>
+</html> 

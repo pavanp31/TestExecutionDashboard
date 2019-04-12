@@ -1,0 +1,17 @@
+{
+    "compilerOptions": {
+        "target": "es2015",
+        "module": "commonjs",
+        "sourceMap": true,
+        //"allowJs": true,
+        "sourceRoot": "scripts",
+        "outDir": ""
+    },
+    "exclude": [
+        "node_modules",
+        "dist",
+        "typings/main.d.ts",
+        "typings"
+    ],
+    "compileOnSave": true
+}
