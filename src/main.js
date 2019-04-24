@@ -22,13 +22,23 @@ test.load();
 ipc.on('cut',
  function(t)
  {
+        var newOtherWindow  = new electron.BrowserWindow({
+        height : 400,
+        width : 400,
+        parent:load.mainWindow,
+        modal:true
+       // loadURL : 'http://localhost:4444/grid/console'
+    })
+       
+
     var request = require("request");
-        var encodedPat ='{cmFjZS5qZWV0QGhvdG1haWwuY29tOkFkaXRpMDEq}';
+        var encodedPat ='{j6hz53knls6y6ensyazrv7doivoiz6si7tikmmdjicmwt5tnbvea}';
         var options =
          {
             method: 'GET',
-            headers: { 'cache-control': 'no-cache', 'authorization': `Basic ${encodedPat}` },
-            url: 'https://myproject8311.visualstudio.com/My%20First%20Project/_workitems/',
+            //headers: { 'cache-control': 'no-cache', 'authorization': `Basic ${encodedPat}` },
+            headers: { 'cache-control': 'no-cache', 'authorization': `DEFAULT/race.jeet@hotmail.com:Aditi01*` },
+            url: 'https://myproject8311.visualstudio.com/4a3d2a56-51da-4127-92eb-8b9eeb414375/_api/_wit/workItemTypeCategories?__v=5',
             qs: { 'api-version': '1.0' }
         };
  
@@ -36,6 +46,8 @@ ipc.on('cut',
          {  
             if (error) throw new Error(error);
             console.log(body);
+            newOtherWindow.load(body);
+            //.load(body);//.loadURL('http://localhost:4444/grid/console')
          });
          
         })
@@ -54,7 +66,7 @@ ipc.on('cut1', function(e,t){
         height : 400,
         width : 400,
         //loadURL : 'https://youtube.com'//'http://localhost:4444/grid/admin/live'
-    })
+       })
        otherWindow.loadURL(t)//'http://localhost:4444/grid/admin/live')
        
 })

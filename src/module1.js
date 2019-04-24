@@ -15,7 +15,7 @@ let $ = require("jquery")
         }
     )
 
-    mainWindow.webContents.openDevTools();
+   // mainWindow.webContents.openDevTools();
     //mainWindow.loadURL('http://training.nfp.com')   
     const name = electron.app.getName()   
     console.log(name)            
