@@ -1,5 +1,3 @@
-@Library(["global-pipeline-libraries", "rx-pipeline-libraries"]) _
-
 pipeline {
   agent any
 
