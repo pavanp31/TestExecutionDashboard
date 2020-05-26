@@ -34,7 +34,7 @@ pipeline {
       environment {
         HOME = "${env.WORKSPACE}"
       }
- parallel {
+
       steps {
         sh '''
           set +x # prevent logging of echoed secrets
@@ -48,7 +48,7 @@ pipeline {
         '''
       }
     }
-   
+    parallel {
       // Execute End to End tests.
       stage('e2e Drug') {
       
