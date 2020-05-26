@@ -21,7 +21,7 @@ pipeline {
 
   stages {
 
- parallel {
+
     // Install the Rx application.
     stage('install') {
       agent {
@@ -34,7 +34,7 @@ pipeline {
       environment {
         HOME = "${env.WORKSPACE}"
       }
-
+ parallel {
       steps {
         sh '''
           set +x # prevent logging of echoed secrets
