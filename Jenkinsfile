@@ -14,6 +14,18 @@ pipeline {
             sh 'ECHO $ANDROID_HOME'
           }
         }
+        
+        stage('Run3') {
+          steps {
+            sh 'ECHO $ANDROID_SDK'
+          }
+        }
+        
+        stage('Run4') {
+          steps {
+            sh 'ECHO $PATH'
+          }
+        }
 
       }
     }
