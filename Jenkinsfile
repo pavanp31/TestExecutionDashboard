@@ -20,7 +20,8 @@ pipeline {
   }
 
   stages {
-
+  stage('e2e') {
+      parallel {
 
     // Install the Rx application.
     stage('install') {
@@ -48,7 +49,7 @@ pipeline {
         '''
       }
     }
-    parallel {
+  
       // Execute End to End tests.
       stage('e2e Drug') {
       
@@ -216,6 +217,7 @@ pipeline {
           }
       }
     }
+  }
   }
 
   post {
