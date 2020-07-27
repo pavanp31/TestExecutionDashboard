@@ -3,52 +3,48 @@ pipeline
 {
   agent any
   stages {
-    stage('Stage1') {
-      
-        stage('Stage1') 
-        {
-          steps {
-            sh 'echo $Android_Home'
-          }
-        }
+    stage('Stage1') 
+    {
+      steps {
+        sh 'echo $Android_Home'
+      }
+    }
 
-          stage('m') {
-          stages
+      stage('m') {
+      stages
+      {
+        stage ('test1')
+        {
+          matrix
           {
-            stage ('test1')
+            agent none
+            axes
             {
-              matrix
+              axis
               {
-                agent none
-                axes
-                {
-                  axis
-                  {
-                    
-                  }
-                  axis
-                  {
-                    
-                  }
-                }
-                stages {
-                  stage('Build') 
-                  {
-                    steps {
-                    }
-                  }
-                  stage('Test') 
-                  {
-                    steps {  
-                    }
-                  }
+                
+              }
+              axis
+              {
+                
+              }
+            }
+            stages {
+              stage('Build') 
+              {
+                steps {
                 }
               }
-                  
+              stage('Test') 
+              {
+                steps {  
+                }
+              }
             }
           }
+              
         }
-      
+      }
     }
   }
 }
