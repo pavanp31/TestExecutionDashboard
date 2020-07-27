@@ -34,13 +34,12 @@ pipeline
               }
             }
             
-              stage('Build') 
-              {
+             
                 steps {
                   runDynamicStage(dyanmicValue)
                   sh 'echo $Android_Home'
                 }
-              }
+              
              
             
           }
