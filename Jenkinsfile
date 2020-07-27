@@ -43,10 +43,10 @@ pipeline
              
               stage('Test') 
               { 
-                steps {  
+               
                   runDynamicStage(dyanmicValue)
                  
-                }
+                
               }
              
             }
