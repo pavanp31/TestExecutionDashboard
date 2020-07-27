@@ -33,13 +33,13 @@ pipeline
               }
             }
             stages {
-              stage('Build: $Android_Home') 
+              stage('Build: ${themes}') 
               {
                 steps {
                   sh 'echo $Android_Home'
                 }
               }
-              stage('Test') 
+              stage('Test: ${suite}') 
               {
                 steps {  
                   
