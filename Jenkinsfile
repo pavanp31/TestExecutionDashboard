@@ -1,57 +1,54 @@
-pipeline {
+#!/usr/bin/env groovy
+pipeline 
+{
   agent any
   stages {
     stage('Stage1') {
       parallel {
-        stage('Stage1') {
+        stage('Stage1') 
+        {
           steps {
             sh 'echo $Android_Home'
           }
         }
 
-        stage('Matrix') {
-          
-
-                stages
+          stage('m') {
+          stages
+          {
+            stage ('test1')
+            {
+              matrix
+              {
+                agent none
+                axes
                 {
-                  stage ('test1')
+                  axis
                   {
-                    matrix
-                    {
-                      agent none
-                      axes
-                      {
-                        axis
-                        {
-                          echo "Axis1"
-                        }
-                        axis
-                        {
-                          echo "Axis2"
-                        }
-
-                      }
-                      stages {
-                        stage('Build') {
-                          steps {
-                            echo "Do Build1 "
-                          }
-                        }
-                        stage('Test') {
-                          steps {
-                            echo "Do Test f1"
-                          }
-                        }
-                      }
+                    
+                  }
+                  axis
+                  {
+                    
+                  }
+                }
+                stages {
+                  stage('Build') 
+                  {
+                    steps {
                     }
-                 
+                  }
+                  stage('Test') 
+                  {
+                    steps {  
+                    }
+                  }
+                }
+              }
+                  
             }
-
           }
         }
-
       }
     }
-
   }
 }
