@@ -45,25 +45,7 @@ pipeline
               { 
                 steps {  
                   runDynamicStage(dyanmicValue)
-                 sh 'echo $Android_Home'
-                  script{
-                    def baseUrl = "www.google.com"
-                    def t = "${themes}"
-                    if(t.contains('uhc'))
-                    {
-                       echo "if block : theme is : ${t}"
-                       baseUrl = "www.uhc.com"
-                    }
-                    else
-                    {
-                       echo "else block : theme is ${t}"
-                       baseUrl = "www.advantage.com"
-                    }
-                   
-                    echo " New Base URL: ${baseUrl}"
-                   
-                    
-                  }
+                 
                 }
               }
              
