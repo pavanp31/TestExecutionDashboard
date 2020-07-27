@@ -44,7 +44,7 @@ pipeline
                   
                  sh 'echo $Android_Home'
                   script{
-                    def t = "${theme}"
+                    def t = "${themes}"
                     if(t=='uhc')
                         {
                           echo "theme is : ${theme}"
