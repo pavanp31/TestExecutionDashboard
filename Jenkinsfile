@@ -14,13 +14,14 @@ pipeline {
             script {
               pipeline
               {
-                agent none
+
                 stages
                 {
                   stage ('test1')
                   {
                     matrix
                     {
+                      agent none
                       axes
                       {
                         axis
