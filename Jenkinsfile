@@ -1,4 +1,5 @@
 #!/usr/bin/env groovy
+def dyanmicValue = 2
 pipeline 
 {
   agent any
@@ -43,7 +44,7 @@ pipeline
               stage('Test') 
               { 
                 steps {  
-                  
+                  runDynamicStage(dyanmicValue)
                  sh 'echo $Android_Home'
                   script{
                     def baseUrl = "www.google.com"
@@ -72,6 +73,12 @@ pipeline
         }
       }
     }
+  }
+}
+
+void runDynamicStage(dyanmicValue) {
+  stage("This will be a dynamic stage name: ${dyanmicValue + 1}") {
+    sh 'echo "==> Inside runDynamicStage"'
   }
 }
 
