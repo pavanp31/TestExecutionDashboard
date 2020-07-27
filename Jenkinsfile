@@ -4,7 +4,7 @@ pipeline
   agent any
   stages {
     stage('Stage1') {
-      parallel {
+      
         stage('Stage1') 
         {
           steps {
@@ -48,7 +48,7 @@ pipeline
             }
           }
         }
-      }
+      
     }
   }
 }
