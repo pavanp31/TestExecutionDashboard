@@ -13,7 +13,8 @@ pipeline
       stage('m') {
       stages
       {
-        stage ('test1')
+        
+        stage ('test1: + $Android_Home')
         {
           matrix
           {
@@ -32,7 +33,7 @@ pipeline
               }
             }
             stages {
-              stage('Build') 
+              stage('Build: $Android_Home') 
               {
                 steps {
                   sh 'echo $Android_Home'
