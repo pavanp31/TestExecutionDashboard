@@ -35,13 +35,13 @@ pipeline
               stage('Build') 
               {
                 steps {
-                  sh 'Build'
+                  sh 'echo $Android_Home'
                 }
               }
               stage('Test') 
               {
                 steps {  
-                 sh 'Test'
+                 sh 'echo $Android_Home'
                 }
               }
             }
