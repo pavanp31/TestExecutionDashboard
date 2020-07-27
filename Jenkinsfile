@@ -47,11 +47,11 @@ pipeline
                     def t = "${themes}"
                     if(t=='uhc')
                         {
-                          echo "theme is : ${theme}"
+                          echo "if block : theme is : ${t}"
                         }
                         else
                         {
-                          echo "theme is ${theme}"
+                          echo "else block : theme is ${t}"
                         }
                   }
                 }
