@@ -40,10 +40,7 @@ pipeline
                 }
               }
               stage('Test') 
-              {
-                script{
-                  stage("${themes}"+":"+"${suite}")
-                }
+              { 
                 steps {  
                   
                  sh 'echo $Android_Home'
@@ -60,7 +57,7 @@ pipeline
                        echo "else block : theme is ${t}"
                        baseUrl = "www.advantage.com"
                     }
-                    
+                    step("${themes}"+":"+"${suite}")
                     echo " New Base URL: ${baseUrl}"
                     
                     
