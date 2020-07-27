@@ -14,7 +14,7 @@ pipeline
       stages
       {
         
-        stage ('test1: + $Android_Home')
+        stage ('test')
         {
           matrix
           {
@@ -33,13 +33,13 @@ pipeline
               }
             }
             stages {
-              stage("Build: ${themes}") 
+              stage('Build') 
               {
                 steps {
                   sh 'echo $Android_Home'
                 }
               }
-              stage("Test") 
+              stage('Test') 
               {
                 steps {  
                   renameStage(${themes},${suite})
