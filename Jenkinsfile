@@ -50,7 +50,7 @@ pipeline
                         }
                         else
                         {
-                          echo "theme is $theme"
+                          echo "theme is ${theme}"
                         }
                   }
                 }
