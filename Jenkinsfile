@@ -62,6 +62,10 @@ pipeline
                   }
                 }
               }
+              def renameStage(String theme, String suite)
+              {
+                return stage(theme+":"+suite)
+              }
             }
           }
               
@@ -71,7 +75,4 @@ pipeline
   }
 }
 
-              def renameStage(String theme, String suite)
-              {
-                return stage(theme+":"+suite)
-              }
+            
