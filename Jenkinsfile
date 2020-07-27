@@ -14,7 +14,7 @@ pipeline {
             script {
               pipeline
               {
-                agent any
+                agent none
                 stages
                 {
                   stage ('test1')
