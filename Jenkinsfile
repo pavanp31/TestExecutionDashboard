@@ -60,7 +60,7 @@ pipeline
                     
                     echo " New Base URL: ${baseUrl}"
                     
-                    stage("${themes}","${suite}")
+                    stage("${themes}"+":"+"${suite}")
                   }
                 }
               }
