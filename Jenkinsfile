@@ -42,7 +42,7 @@ pipeline
               stage('Test') 
               {
                 steps {  
-                  renameStage(${themes},${suite})
+                  renameStage("${themes}","${suite}")
                  sh 'echo $Android_Home'
                   script{
                     def baseUrl = "www.google.com"
