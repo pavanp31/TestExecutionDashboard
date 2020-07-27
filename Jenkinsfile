@@ -59,7 +59,7 @@ pipeline
 }
 
 void runDynamicStage(dyanmicValue) {
-  step("This will be a dynamic stage name: ${dyanmicValue + 1}") {
+  stage("This will be a dynamic stage name: ${dyanmicValue + 1}") {
     sh 'echo "==> Inside runDynamicStage"'
   }
 }
