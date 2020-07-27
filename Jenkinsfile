@@ -39,8 +39,13 @@ pipeline
                   sh 'echo $Android_Home'
                 }
               }
+             
               stage('Test') 
               { 
+                node {
+                    stage("Build ${themes}") 
+                }
+                
                 steps {  
                   
                  sh 'echo $Android_Home'
@@ -57,9 +62,8 @@ pipeline
                        echo "else block : theme is ${t}"
                        baseUrl = "www.advantage.com"
                     }
-                    step("${themes}"+":"+"${suite}")
+                   
                     echo " New Base URL: ${baseUrl}"
-                    
                     
                   }
                 }
