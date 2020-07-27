@@ -32,6 +32,19 @@ pipeline {
                         {
 
                         }
+
+                      }
+                      stages {
+                        stage('Build') {
+                          steps {
+                            echo "Do Build1 "
+                          }
+                        }
+                        stage('Test') {
+                          steps {
+                            echo "Do Test f1"
+                          }
+                        }
                       }
                     }
                   }
