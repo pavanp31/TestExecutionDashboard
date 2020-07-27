@@ -35,14 +35,13 @@ pipeline
               stage('Build') 
               {
                 steps {
+                  sh 'Build'
                 }
               }
               stage('Test') 
               {
                 steps {  
-                  step{
-                    
-                  }
+                 sh 'Test'
                 }
               }
             }
