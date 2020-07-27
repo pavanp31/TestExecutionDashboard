@@ -33,7 +33,7 @@ pipeline
                 values 'orderstatus', 'home', 'drug', 'pharmacy'
               }
             }
-            stages {
+            
               stage('Build') 
               {
                 steps {
@@ -42,7 +42,7 @@ pipeline
                 }
               }
              
-            }
+            
           }
               
         }
