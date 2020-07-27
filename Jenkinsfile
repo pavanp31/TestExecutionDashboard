@@ -41,7 +41,18 @@ pipeline
               stage('Test') 
               {
                 steps {  
+                  
                  sh 'echo $Android_Home'
+                  script{
+                        if(${theme}=='uhc')
+                        {
+                          echo "theme is : ${theme}"
+                        }
+                        else
+                        {
+                          echo "theme is $theme"
+                        }
+                  }
                 }
               }
             }
