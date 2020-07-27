@@ -41,6 +41,9 @@ pipeline
               }
               stage('Test') 
               {
+                script{
+                  stage("${themes}"+":"+"${suite}")
+                }
                 steps {  
                   
                  sh 'echo $Android_Home'
@@ -60,7 +63,7 @@ pipeline
                     
                     echo " New Base URL: ${baseUrl}"
                     
-                    stage("${themes}"+":"+"${suite}")
+                    
                   }
                 }
               }
