@@ -46,7 +46,7 @@ pipeline
                   script{
                     def baseUrl = "www.google.com"
                     def t = "${themes}"
-                    if(t=='uhc')
+                    if(t.contains('uhc'))
                     {
                        echo "if block : theme is : ${t}"
                        baseUrl = "www.uhc.com"
