@@ -29,7 +29,7 @@ pipeline {
                         }
                         axis
                         {
-                          echo "Axis2"
+
                         }
                       }
                     }
