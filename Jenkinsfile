@@ -44,15 +44,20 @@ pipeline
                   
                  sh 'echo $Android_Home'
                   script{
+                    def baseUrl = "www.google.com"
                     def t = "${themes}"
                     if(t=='uhc')
-                        {
-                          echo "if block : theme is : ${t}"
-                        }
-                        else
-                        {
-                          echo "else block : theme is ${t}"
-                        }
+                    {
+                       echo "if block : theme is : ${t}"
+                       baseUrl = "www.uhc.com"
+                    }
+                    else
+                    {
+                       echo "else block : theme is ${t}"
+                       baseUrl = "www.advantage.com"
+                    }
+                    
+                    echo " New Base URL: ${baseUrl}"
                   }
                 }
               }
