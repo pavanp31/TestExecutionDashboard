@@ -22,11 +22,13 @@ pipeline
             {
               axis
               {
-                
+                name 'themes'
+                values 'uhc', 'advantage'
               }
               axis
               {
-                
+                name 'suite'
+                values 'orderstatus', 'home', 'drug', 'pharmacy'
               }
             }
             stages {
@@ -38,6 +40,9 @@ pipeline
               stage('Test') 
               {
                 steps {  
+                  step{
+                    
+                  }
                 }
               }
             }
