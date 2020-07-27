@@ -10,10 +10,7 @@ pipeline {
         }
 
         stage('Matrix') {
-          steps {
-            script {
-              pipeline
-              {
+          
 
                 stages
                 {
@@ -30,7 +27,7 @@ pipeline {
                         }
                         axis
                         {
-
+                          echo "Axis2"
                         }
 
                       }
@@ -47,9 +44,7 @@ pipeline {
                         }
                       }
                     }
-                  }
-                }
-              }
+                 
             }
 
           }
