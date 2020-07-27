@@ -34,16 +34,16 @@ pipeline
               }
             }
             
-             
+            stages{
+             stage('build')
+              {
                 steps {
                   runDynamicStage(dyanmicValue)
                   sh 'echo $Android_Home'
                 }
-              
-             
-            
-          }
-              
+              }
+            }
+          } 
         }
       }
     }
