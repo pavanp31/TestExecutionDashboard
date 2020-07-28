@@ -1,5 +1,6 @@
 #!/usr/bin/env groovy
 def dyanmicValue = 2
+def p
 pipeline 
 {
   agent any
@@ -40,7 +41,8 @@ pipeline
                 steps {
                   script{
                   def t = runDynamicStage(dyanmicValue)
-                  echo "final Value should be >2: Actual: ${t}"
+                  p=t
+                  echo "final Value should be >2: Actual: ${p}"
                   }
                 }
               }
