@@ -38,8 +38,10 @@ pipeline
              stage('build')
               {
                 steps {
+                  script{
                   def t = runDynamicStage(dyanmicValue)
                   sh 'echo final Value should be >2: Actual: "${t}"'
+                  }
                 }
               }
             }
