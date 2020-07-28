@@ -38,8 +38,8 @@ pipeline
              stage('build')
               {
                 steps {
-                  runDynamicStage(dyanmicValue)
-                  sh 'echo final Value should be >2: Actual: "${dyanmicValue}"'
+                  def t = runDynamicStage(dyanmicValue)
+                  sh 'echo final Value should be >2: Actual: "${t}"'
                 }
               }
             }
@@ -50,9 +50,10 @@ pipeline
   }
 }
 
-void runDynamicStage(dyanmicValue) {
+def runDynamicStage(dyanmicValue) {
   stage("This will be a dynamic stage name: ${dyanmicValue + 1}") {
     sh 'echo "==> Inside runDynamicStage"'
+    return "tested"
   }
 }
 
