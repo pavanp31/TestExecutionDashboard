@@ -39,7 +39,7 @@ pipeline
               {
                 steps {
                   runDynamicStage(dyanmicValue)
-                  sh 'echo final Value should be >2: Actual: ${dyanmicValue}'
+                  sh 'echo final Value should be >2: Actual: "${dyanmicValue}"'
                 }
               }
             }
