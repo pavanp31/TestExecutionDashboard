@@ -1,6 +1,7 @@
 #!/usr/bin/env groovy
 def dyanmicValue = 2
 def p
+def r
 pipeline 
 {
   agent any
@@ -64,7 +65,8 @@ pipeline
 def runDynamicStage(dyanmicValue) {
   stage("This will be a dynamic stage name: ${dyanmicValue + 1}") {
     sh 'echo "==> Inside runDynamicStage"'
-    return "tested"
+    r = "tested"
+    return r
   }
 }
 
