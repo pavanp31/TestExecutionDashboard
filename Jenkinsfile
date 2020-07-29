@@ -52,6 +52,13 @@ pipeline
       }
     }
   }
+  post {
+    always {
+      script {
+        echo "Getting scope of t out side stage : ${t}"
+      }
+    }
+  }
 }
 
 def runDynamicStage(dyanmicValue) {
