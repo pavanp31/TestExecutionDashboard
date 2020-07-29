@@ -55,7 +55,7 @@ pipeline
   post {
     always {
       script {
-        echo "Getting scope of t out side stage : ${t}"
+        echo "Getting scope of t out side stage : ${p}"
       }
     }
   }
