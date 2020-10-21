@@ -1,0 +1,33 @@
+# syntax = docker/dockerfile:1.0-experimental
+FROM docker.werally.in/selenium/standalone-chrome:3.141.59-20200515
+
+# Use root for setup.
+USER root
+
+# Install node.js and yarn.
+RUN curl -sL https://deb.nodesource.com/setup_10.x | bash -
+RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - \
+    && echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list
+RUN apt-get update -qq && apt-get install -qq nodejs yarn
+
+# Set the working directory to the default home directory.
+WORKDIR /home/seluser
+VOLUME /home/seluser/wdio/output
+
+# Copy project files.
+COPY src src
+COPY wdio wdio
+COPY wdio*.js .
+COPY package.json .
+COPY yarn.lock .
+ADD scripts/yarn_install_ci.sh .
+
+# Install dependencies.
+RUN --mount=type=secret,id=artifactory_credentials,required ./yarn_install_ci.sh
+
+# Make the workdir world accessible in case it's run by a user other than seluser.
+RUN chmod -R 777 /home/seluser
+
+# Switch back to the default image user.
+# When running on Jenkins, this will probably be replaced by 1001:1001 (jenkins).
+USER seluser
