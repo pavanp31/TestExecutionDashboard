@@ -1,0 +1,118 @@
+@Library(["global-pipeline-libraries", "rx-pipeline-libraries"]) _
+
+pipeline {
+  agent any
+
+  options {
+    skipDefaultCheckout false
+    timeout(time: 30, unit: 'MINUTES')
+    timestamps()
+    ansiColor('xterm')
+    buildDiscarder(logRotator(numToKeepStr: '30', artifactNumToKeepStr: '30'))
+  }
+
+  parameters {
+    string(name: 'baseUrl', description: 'Base URL to smoke. Must support fakesso.', defaultValue: 'https://member.int.uhc.com')
+    string(name: 'rallyId', description: 'Fake user RallyID. Default user is BOWDEN.CHAVARRIA.BPE.', defaultValue: '8bd9bad1-b3e6-48d2-91da-e056632b57c6')
+    string(name: 'hsid', description: 'Fake user HSID. Only set if you want to skip the HSID API calls. Default is unset.', defaultValue: '')
+  }
+
+  environment {
+    ARTIFACTORY_CREDENTIALS = credentials('artifactory')
+  }
+
+  stages {
+
+    // Install yarn dependencies.
+    stage('install') {
+
+      agent {
+        dockerfile {
+          filename 'Dockerfile.wdio'
+          reuseNode true
+        }
+      }
+
+      environment {
+        HOME = "${env.WORKSPACE}"
+      }
+
+      steps {
+        sh '''
+          set +x # prevent logging of echoed secrets
+          npm config set registry 'https://artifacts.werally.in/artifactory/api/npm/npm'
+          npm config set always-auth true
+          npm config set email "cloudops@rallyhealth.com"
+          npm config set _auth $(echo -n "$ARTIFACTORY_CREDENTIALS" | base64 | tr -d '\n')
+          set -x
+
+          yarn install
+        '''
+      }
+    }
+
+    // Execute the smoke test.
+    stage('smoke test') {
+      agent {
+        dockerfile {
+          filename 'Dockerfile.wdio'
+          reuseNode true
+        }
+      }
+
+      environment {
+        HOME = "${env.WORKSPACE}"
+        FAKE_RALLY_ID = "${params.rallyId}"
+        FAKE_HSID = "${params.hsid}"
+        CI = "true"
+      }
+
+      steps {
+        script {
+          sh "yarn wdio-smoke --baseUrl ${params.baseUrl}"
+        }
+      }
+    }
+  }
+
+  post {
+    always {
+      script {
+
+        // Generate Allure smoke test report.
+        // docs.qameta.io/allure
+        allure([
+          includeProperties: false,
+          jdk: '',
+          properties: [],
+          reportBuildPolicy: 'ALWAYS',
+          results: [[path: 'wdio/output/smoke-test/allure-results']]
+        ])
+
+        archiveArtifacts "wdio/output/smoke-test/smoke-*"
+        archiveArtifacts "wdio/output/smoke-test/allure-results/*"
+        archiveArtifacts "wdio/output/smoke-test/junit-results/*"
+        junit 'wdio/output/smoke-test/junit-results/wdio-*-junit-reporter.log'
+
+      }
+    }
+
+    failure {
+      script {
+        if (env.BRANCH_NAME == 'master') {
+          withCredentials([string(credentialsId: 'rallyhealth-slack', variable: 'slackCredentials')]) {
+            slackSend(
+              channel: '#rx-eng',
+              message: ":dumpsterfire: UI smoke tests failed :dumpsterfire: ${env.BUILD_URL}",
+              color: '#c21039',
+              failOnError: false,
+              teamDomain: 'rallyhealth',
+              token: slackCredentials
+            )
+          }
+        }
+      }
+    }
+  }
+
+}

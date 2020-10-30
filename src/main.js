@@ -26,7 +26,8 @@ ipc.on('cut',
         height : 400,
         width : 400,
         parent:load.mainWindow,
-        modal:true
+        modal:true,
+        loadURL:'https://app.saucelabs.com/live/a56c45b570f643c3b9d0d24f7eb46047'
        // loadURL : 'http://localhost:4444/grid/console'
     })
        
@@ -65,6 +66,7 @@ ipc.on('cut1', function(e,t){
         otherWindow  = new electron.BrowserWindow({
         height : 400,
         width : 400,
+        loadURL : 'https://app.saucelabs.com/live/a56c45b570f643c3b9d0d24f7eb46047'
         //loadURL : 'https://youtube.com'//'http://localhost:4444/grid/admin/live'
        })
        otherWindow.loadURL(t)//'http://localhost:4444/grid/admin/live')

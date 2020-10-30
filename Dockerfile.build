@@ -1,0 +1,8 @@
+FROM node:10.19.0-alpine
+
+RUN apk update && \
+    apk upgrade && \
+    apk add bash curl git jq yarn
+
+# Allow Jenkins to invoke yarn dev dependencies.
+ENV PATH ./node_modules/.bin:$PATH
